@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
 
         <title>Tabouret Project</title>
 
@@ -56,11 +57,25 @@
         </div>
 
         <script type="text/javascript">
-            document.getElementById('js-validate').addEventListener('click', function() {
-                var password = document.getElementById('js-password').value.toLowerCase();
-                
+            function retrievePassword() {
+                return document.getElementById('js-password').value.toLowerCase();
+            }
+
+            function showContent(password) {
                 if (password === 'orangerie' || password === 'orangeraie') {
                     document.getElementsByClassName('main')[0].classList.remove('hidden');
+                }
+            }
+
+            document.getElementById('js-validate').addEventListener('click', function() {
+                showContent(retrievePassword());
+            });
+
+            document.getElementById('js-password').addEventListener('keyup', function(e) {
+                e.which = e.which || e.keyCode;
+
+                if (e.which === 13) {
+                    showContent(retrievePassword());
                 }
             });
         </script>
