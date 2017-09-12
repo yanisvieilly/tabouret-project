@@ -34,11 +34,15 @@
             .hidden {
                 display: none;
             }
+
+            .error {
+                color: #f00;
+            }
         </style>
     </head>
 
     <body>
-        <div class="access">
+        <div id="js-access" class="access">
             <div>
                 Le mot de passe ?
                 <small class="tip">(...prononcé plusieurs fois à Strasbourg)</small>
@@ -47,9 +51,11 @@
                 <input id="js-password" type="text" />
                 <button id="js-validate" type="button">Valider</button>
             </div>
+            <div id="js-result" class="error">
+            </div>
         </div>
 
-        <div class="main hidden">
+        <div id="js-main" class="main hidden">
             <img class="panel" src="picture_1.png" />
             <img class="panel" src="picture_2.png" />
             <img class="panel" src="picture_3.png" />
@@ -63,7 +69,10 @@
 
             function showContent(password) {
                 if (password === 'orangerie' || password === 'orangeraie') {
-                    document.getElementsByClassName('main')[0].classList.remove('hidden');
+                    document.getElementById('js-main').classList.remove('hidden');
+                    document.getElementById('js-access').remove();
+                } else {
+                    document.getElementById('js-result').innerHTML = 'Nope!';
                 }
             }
 
